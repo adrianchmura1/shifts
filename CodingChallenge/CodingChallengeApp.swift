@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Shifts
 
 @main
 struct CodingChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            ShiftsView()
+            ShiftsCoordinator().root
         }
     }
 }
