@@ -16,18 +16,19 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
-            name: "Shifts",
-            dependencies: [],
-            path: "Sources/Presentation/Shifts"
-        ),
-        .target(
             name: "ShiftsDomain",
             dependencies: [],
             path: "Sources/Domain/ShiftsDomain"
-        ),.target(
+        ),
+        .target(
             name: "ShiftsData",
-            dependencies: [],
+            dependencies: ["ShiftsDomain"],
             path: "Sources/Data/ShiftsData"
+        ),
+        .target(
+            name: "Shifts",
+            dependencies: ["ShiftsDomain"],
+            path: "Sources/Presentation/Shifts"
         ),
         .testTarget(
             name: "DataTests",
