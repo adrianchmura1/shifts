@@ -11,7 +11,7 @@ protocol NetworkService: AnyObject {
     func data<ResponseObject: Decodable>(for request: URLRequest) async throws -> ResponseObject
 }
 
-final class DefaultNetworkService<T: Decodable>: NetworkService {
+final class DefaultNetworkService: NetworkService {
     private let session: URLSession
     private let decoder: JSONDecoder
 
