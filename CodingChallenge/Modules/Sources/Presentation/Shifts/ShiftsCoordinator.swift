@@ -6,29 +6,16 @@
 //
 
 import SwiftUI
-
-public protocol DependencyContainer: AnyObject {
-    var shiftsView: AnyView { get }
-}
-
-public final class DefaultDependencyContainer: DependencyContainer {
-    public init() {}
-
-    public var shiftsView: AnyView {
-        let viewModel = ShiftsViewModel()
-        let shiftsView = ShiftsView(viewModel: viewModel)
-        return AnyView(shiftsView)
-    }
-}
+import ShiftsDomain
+import ShiftsData
 
 public final class ShiftsCoordinator {
-    private let container: DependencyContainer
-
-    public init(container: DependencyContainer) {
-        self.container = container
-    }
+    public init() {}
 
     public var root: AnyView {
-        container.shiftsView
-    }
+        let domainAssembly = DomainAssembly()
+        let dataAssembly = DataAssembly()
+        let getShiftsUseCase = domainAssembly.getShiftsUseCase(repository: dataAssembly.shiftsRepository)
+        let viewModel = ShiftsViewModel(getShiftsUseCase: getShiftsUseCase)
+        return AnyView(ShiftsView(viewModel: viewModel))    }
 }

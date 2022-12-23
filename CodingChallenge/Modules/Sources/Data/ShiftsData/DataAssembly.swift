@@ -9,6 +9,8 @@ import Foundation
 import ShiftsDomain
 
 public final class DataAssembly {
+    public init() {}
+    
     public var shiftsRepository: ShiftsRepository {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601

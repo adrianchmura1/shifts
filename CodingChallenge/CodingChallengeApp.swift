@@ -10,11 +10,9 @@ import Shifts
 
 @main
 struct CodingChallengeApp: App {
-    private let container = DefaultDependencyContainer()
-
     var body: some Scene {
         WindowGroup {
-            ShiftsCoordinator(container: container).root
+            ShiftsCoordinator().root
         }
     }
 }

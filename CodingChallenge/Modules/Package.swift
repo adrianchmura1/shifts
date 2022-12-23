@@ -27,7 +27,7 @@ let package = Package(
         ),
         .target(
             name: "Shifts",
-            dependencies: ["ShiftsDomain"],
+            dependencies: ["ShiftsDomain", "ShiftsData"],
             path: "Sources/Presentation/Shifts"
         ),
         .testTarget(

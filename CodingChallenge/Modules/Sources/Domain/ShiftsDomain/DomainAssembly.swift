@@ -8,6 +8,8 @@
 import Foundation
 
 public final class DomainAssembly {
+    public init() {}
+
     public func getShiftsUseCase(repository: ShiftsRepository) -> GetShiftsUseCase {
         DefaultGetShiftsUseCase(repository: repository)
     }
