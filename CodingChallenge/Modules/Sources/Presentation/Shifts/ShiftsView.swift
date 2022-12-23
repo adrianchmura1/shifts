@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShiftsView: View {
+    @ObservedObject var viewModel: ShiftsViewModel
+
     var body: some View {
         NavigationView {
             Group {
@@ -20,8 +22,8 @@ struct ShiftsView: View {
     }
 }
 
-struct ShiftsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShiftsView()
-    }
-}
+//struct ShiftsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShiftsView(viewModel: )
+//    }
+//}

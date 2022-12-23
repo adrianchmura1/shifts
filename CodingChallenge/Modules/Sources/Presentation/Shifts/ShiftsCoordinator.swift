@@ -7,10 +7,28 @@
 
 import SwiftUI
 
-public final class ShiftsCoordinator {
+public protocol DependencyContainer: AnyObject {
+    var shiftsView: AnyView { get }
+}
+
+public final class DefaultDependencyContainer: DependencyContainer {
     public init() {}
 
+    public var shiftsView: AnyView {
+        let viewModel = ShiftsViewModel()
+        let shiftsView = ShiftsView(viewModel: viewModel)
+        return AnyView(shiftsView)
+    }
+}
+
+public final class ShiftsCoordinator {
+    private let container: DependencyContainer
+
+    public init(container: DependencyContainer) {
+        self.container = container
+    }
+
     public var root: AnyView {
-        AnyView(ShiftsView())
+        container.shiftsView
     }
 }
