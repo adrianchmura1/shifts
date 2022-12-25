@@ -8,14 +8,52 @@
 import Foundation
 
 struct ShiftsResponse: Decodable {
-    var data: [ShiftsDataResponse]
+    let data: [ShiftsDataResponse]
 }
 
-struct ShiftsDataResponse: Decodable {
-    var date: String
-    var shifts: [ShiftResponse]
+extension ShiftsResponse {
+    struct ShiftsDataResponse: Decodable {
+        let date: String
+        let shifts: [ShiftResponse]
+    }
 }
 
-struct ShiftResponse: Decodable {
-    var shift_id: Int
+extension ShiftsResponse.ShiftsDataResponse {
+    struct ShiftResponse: Decodable {
+        let shift_id: Int
+        let start_time: Date
+        let end_time: Date
+        let timezone: String
+        let shift_kind: String
+        let within_distance: Int
+        let facility_type: FacilityType
+        let skill: Skill
+        let localized_specialty: LocalizedSpecialty
+    }
+}
+
+extension ShiftsResponse.ShiftsDataResponse.ShiftResponse {
+    struct FacilityType: Decodable {
+        let id: Int
+        let name: String
+        let color: String
+    }
+}
+
+extension ShiftsResponse.ShiftsDataResponse.ShiftResponse {
+    struct Skill: Decodable {
+        let id: Int
+        let name: String
+        let color: String
+    }
+}
+
+extension ShiftsResponse.ShiftsDataResponse.ShiftResponse {
+    struct LocalizedSpecialty: Decodable {
+        let id: Int
+        let specialty_id: Int
+        let state_id: Int
+        let name: String
+    }
+
 }

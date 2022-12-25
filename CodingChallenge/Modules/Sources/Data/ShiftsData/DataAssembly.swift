@@ -13,6 +13,7 @@ public final class DataAssembly {
 
     public var shiftsRepository: ShiftsRepository {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         let networkService = DefaultNetworkService(decoder: decoder)
         let restService = DefaultShiftsRestService(networkService: networkService)
         return DefaultShiftsRepository(restService: restService)

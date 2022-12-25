@@ -38,7 +38,20 @@ final class DefaultShiftsRestService: ShiftsRestService {
         let shiftsResponse: ShiftsResponse = try await networkService.data(for: request)
 
         return shiftsResponse.data.map {
-            ShiftDay(date: $0.date, shifts: $0.shifts.map { Shift(name: String($0.shift_id)) } )
+            ShiftDay(date: $0.date, shifts: $0.shifts.map {
+                ShiftDay.Shift(id: $0.shift_id,
+                               start: $0.start_time,
+                               end: $0.end_time,
+                               timezone: $0.timezone,
+                               kind: $0.shift_kind,
+                               distance: $0.within_distance,
+                               facilityType: ShiftDay.Shift.FacilityType(id: $0.facility_type.id, name: $0.facility_type.name, color: $0.facility_type.color),
+                               skill: ShiftDay.Shift.Skill(id: $0.skill.id, name: $0.skill.name, color: $0.skill.color),
+                               localizedSpecialty: ShiftDay.Shift.LocalizedSpecialty(id: $0.localized_specialty.id,
+                                                                                     specialtyId: $0.localized_specialty.specialty_id,
+                                                                                     stateId: $0.localized_specialty.state_id,
+                                                                                     name: $0.localized_specialty.name))
+            })
         }
     }
 }
