@@ -20,13 +20,13 @@ final class DefaultShiftsRestService: ShiftsRestService {
     }
 
     public func shifts() async throws -> [ShiftDay] {
-        let queryItemAddress = URLQueryItem(name: "address", value: "Dallas, TX")
+        let queryItemAddress = URLQueryItem(name: "address", value: "Dallas%2C+TX")
         let queryItemType = URLQueryItem(name: "type", value: "4day")
 
         var components = URLComponents()
         components.scheme = "https"
         components.host = "staging-app.shiftkey.com"
-        components.path = "api/v2/available_shifts"
+        components.path = "/api/v2/available_shifts"
         components.queryItems = [queryItemAddress, queryItemType]
 
         guard let url = components.url else {
@@ -38,7 +38,7 @@ final class DefaultShiftsRestService: ShiftsRestService {
         let shiftsResponse: ShiftsResponse = try await networkService.data(for: request)
 
         return shiftsResponse.data.map {
-            ShiftDay(date: $0.date, shifts: $0.shifts.map { Shift(name: $0.shift_id) } )
+            ShiftDay(date: $0.date, shifts: $0.shifts.map { Shift(name: String($0.shift_id)) } )
         }
     }
 }
