@@ -14,7 +14,7 @@ extension ShiftsViewModel {
         let shifts: [ShiftPresentable]
 
         init(from domain: ShiftDay) {
-            title = domain.date
+            title = domain.date.formatted()
             shifts = domain.shifts.map {
                 ShiftPresentable(start: $0.start.formatted(),
                                  end: $0.end.formatted(),

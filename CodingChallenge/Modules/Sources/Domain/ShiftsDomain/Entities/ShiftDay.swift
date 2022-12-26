@@ -8,10 +8,10 @@
 import Foundation
 
 public struct ShiftDay {
-    public let date: String
+    public let date: Date
     public let shifts: [Shift]
 
-    public init(date: String, shifts: [Shift]) {
+    public init(date: Date, shifts: [Shift]) {
         self.date = date
         self.shifts = shifts
     }

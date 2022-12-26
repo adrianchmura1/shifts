@@ -38,7 +38,11 @@ final class DefaultShiftsRestService: ShiftsRestService {
         let shiftsResponse: ShiftsResponse = try await networkService.data(for: request)
 
         return shiftsResponse.data.map {
-            ShiftDay(date: $0.date, shifts: $0.shifts.map {
+            guard let date = map($0.date) else {
+                fatalError("Cannot parse date")
+            }
+
+            return ShiftDay(date: date, shifts: $0.shifts.map {
                 ShiftDay.Shift(id: $0.shift_id,
                                start: $0.start_time,
                                end: $0.end_time,
@@ -53,5 +57,11 @@ final class DefaultShiftsRestService: ShiftsRestService {
                                                                                      name: $0.localized_specialty.name))
             })
         }
+    }
+
+    private func map(_ dateString: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        return formatter.date(from: dateString)
     }
 }

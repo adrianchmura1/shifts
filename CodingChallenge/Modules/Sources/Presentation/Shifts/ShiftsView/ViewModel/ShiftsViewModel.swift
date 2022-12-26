@@ -18,6 +18,10 @@ final class ShiftsViewModel: ObservableObject {
     }
 
     func onAppear() {
+        guard viewState == .empty || viewState == .error || viewState == .loading else {
+            return
+        }
+
         Task {
             await setState(to: .loading)
             do {
@@ -43,7 +47,6 @@ final class ShiftsViewModel: ObservableObject {
     private func handleError(_ error: Error) async {
         await setState(to: .error)
         #warning("TODO: Errors should be Domain only, implement mapping HTTP errors to Domain errors in Data layer")
-
     }
 
 }

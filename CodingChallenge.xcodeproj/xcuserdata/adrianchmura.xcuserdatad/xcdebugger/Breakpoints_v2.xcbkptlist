@@ -7,64 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "99E85C50-925E-46F7-B1A1-0BAA49A4C97D"
+            uuid = "5CA48471-423C-4AEA-9ECD-B0E04C9A9DFF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CodingChallenge/Modules/Sources/Presentation/Shifts/ShiftsView/ViewModel/ShiftsViewModel.swift"
+            filePath = "CodingChallenge/Modules/Sources/Domain/ShiftsDomain/UseCases/DefaultGetShiftsUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "onAppear()"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "execute()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "99E85C50-925E-46F7-B1A1-0BAA49A4C97D - f6ff884c2793cbf1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(10) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shifts.ShiftsViewModel.onAppear() -&gt; ()"
-                  moduleName = "CodingChallenge"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adrianchmura/devs/ios/ios-coding-challenge/CodingChallenge/Modules/Sources/Presentation/Shifts/ShiftsView/ViewModel/ShiftsViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "93">
-               </Location>
-               <Location
-                  uuid = "99E85C50-925E-46F7-B1A1-0BAA49A4C97D - ee9d19b64609e21b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(11) await resume partial function for closure #1 @Sendable () async -&gt; () in Shifts.ShiftsViewModel.onAppear() -&gt; ()"
-                  moduleName = "CodingChallenge"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adrianchmura/devs/ios/ios-coding-challenge/CodingChallenge/Modules/Sources/Presentation/Shifts/ShiftsView/ViewModel/ShiftsViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "34">
-               </Location>
-               <Location
-                  uuid = "99E85C50-925E-46F7-B1A1-0BAA49A4C97D - b9657523166091f3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(12) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Shifts.ShiftsViewModel.onAppear() -&gt; ()"
-                  moduleName = "CodingChallenge"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adrianchmura/devs/ios/ios-coding-challenge/CodingChallenge/Modules/Sources/Presentation/Shifts/ShiftsView/ViewModel/ShiftsViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
