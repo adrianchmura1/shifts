@@ -23,6 +23,7 @@ final class DefaultShiftsRestService: ShiftsRestService {
         let queryItemAddress = URLQueryItem(name: "address", value: "Dallas%2C+TX")
         let queryItemType = URLQueryItem(name: "type", value: "4day")
 
+        #warning("TODO: Move below logic to common network configuration")
         var components = URLComponents()
         components.scheme = "https"
         components.host = "staging-app.shiftkey.com"
@@ -37,6 +38,7 @@ final class DefaultShiftsRestService: ShiftsRestService {
 
         let shiftsResponse: ShiftsResponse = try await networkService.data(for: request)
 
+        #warning("TODO: Move below logic to mapper")
         return shiftsResponse.data.map {
             guard let date = map($0.date) else {
                 fatalError("Cannot parse date")

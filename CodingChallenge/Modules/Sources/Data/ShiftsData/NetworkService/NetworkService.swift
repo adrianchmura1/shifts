@@ -7,6 +7,8 @@
 
 import Foundation
 
+#warning("TODO: Move service to separate module so it can be reused by other modules clients/restServices")
+
 protocol NetworkService: AnyObject {
     func data<ResponseObject: Decodable>(for request: URLRequest) async throws -> ResponseObject
 }

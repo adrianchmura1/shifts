@@ -34,26 +34,3 @@ extension ShiftsViewModel {
         }
     }
 }
-
-extension ShiftsViewModel.ShiftsSectionPresentable {
-    struct ShiftPresentable: Equatable, Hashable {
-        let shiftId: Int
-        let start: String
-        let end: String
-        let specialty: String
-        let details: ShiftDetailsPresentable
-    }
-}
-
-extension ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable {
-    struct ShiftDetailsPresentable: Equatable, Hashable {
-        let shiftId: Int
-        let start: String
-        let end: String
-        let specialty: String
-        let kind: String
-        let timezone: String
-        let skill: String
-        let distance: String
-    }
-}

@@ -38,7 +38,10 @@ final class ShiftsViewModel: ObservableObject {
                     await setState(to: .empty)
                     return
                 }
+
+                #warning("TODO: Move mapping logic to mapper")
                 let presentables = shiftDays.map { ShiftsSectionPresentable(from: $0) }
+
                 await setState(to: .sections(presentables))
             }
             catch {
