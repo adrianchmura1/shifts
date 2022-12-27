@@ -14,12 +14,16 @@ extension ShiftsViewModel {
         let shifts: [ShiftPresentable]
 
         init(from domain: ShiftDay) {
-            title = domain.date.formatted()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM d"
+            title = formatter.string(from: domain.date)
             shifts = domain.shifts.map {
-                ShiftPresentable(start: $0.start.formatted(),
+                ShiftPresentable(shiftId: $0.id,
+                                 start: $0.start.formatted(),
                                  end: $0.end.formatted(),
                                  specialty: $0.localizedSpecialty.name,
-                                 details: .init(start: $0.start.formatted(),
+                                 details: .init(shiftId: $0.id,
+                                                start: $0.start.formatted(),
                                                 end: $0.end.formatted(),
                                                 specialty: $0.localizedSpecialty.name,
                                                 kind: $0.kind,
@@ -32,6 +36,7 @@ extension ShiftsViewModel {
 
 extension ShiftsViewModel.ShiftsSectionPresentable {
     struct ShiftPresentable: Equatable, Hashable {
+        let shiftId: Int
         let start: String
         let end: String
         let specialty: String
@@ -41,6 +46,7 @@ extension ShiftsViewModel.ShiftsSectionPresentable {
 
 extension ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable {
     struct ShiftDetailsPresentable: Equatable, Hashable {
+        let shiftId: Int
         let start: String
         let end: String
         let specialty: String

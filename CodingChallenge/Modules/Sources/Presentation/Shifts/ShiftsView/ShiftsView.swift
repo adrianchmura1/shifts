@@ -43,6 +43,8 @@ struct ShiftsView: View {
 
 extension ShiftsView {
     struct DaysList: View {
+        @EnvironmentObject var viewModel: ShiftsViewModel
+
         private let presentables: [ShiftsViewModel.ShiftsSectionPresentable]
 
         init(_ presentables: [ShiftsViewModel.ShiftsSectionPresentable]) {
@@ -61,12 +63,15 @@ extension ShiftsView {
                     })
                 }
             }
+            .environmentObject(viewModel)
         }
     }
 }
 
 extension ShiftsView.DaysList {
     struct Day: View {
+        @EnvironmentObject var viewModel: ShiftsViewModel
+
         private let presentables: [ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable]
 
         init(presentables: [ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable]) {
@@ -76,22 +81,31 @@ extension ShiftsView.DaysList {
         var body: some View {
             List {
                 ForEach(presentables, id: \.self) { presentable in
-                    NavigationLink(destination: {
-                        LazyView {
-                            AnyView(Shift(presentable: presentable.details))
+                    shiftPreview(from: presentable)
+                        .onTapGesture {
+                            viewModel.presentableTapped(presentable)
                         }
-                    }, label: {
-                        shiftPreview(from: presentable)
-                    })
                 }
             }
+            .sheet(isPresented: $viewModel.isModalVisible,
+                   onDismiss: {
+                        viewModel.modalDismissed()
+                   }, content: {
+                        LazyView {
+                            AnyView(Shift(presentable: viewModel.presentableModal!.details))
+                        }
+                   }
+            )
         }
 
         @ViewBuilder
         func shiftPreview(from presentable: ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable) -> some View {
-            Text("Start: \(presentable.start)")
-            Text("End: \(presentable.end)")
-            Text("Specialty: \(presentable.specialty)")
+            VStack(alignment: .leading) {
+                Text("Start: \(presentable.start)")
+                Text("End: \(presentable.end)")
+                Text("Specialty: \(presentable.specialty)")
+            }
+            .padding()
         }
     }
 }
@@ -105,11 +119,13 @@ extension ShiftsView.DaysList.Day {
         }
 
         var body: some View {
-            Text("Start: \(presentable.start)")
-            Text("End: \(presentable.end)")
-            Text("Specialty: \(presentable.specialty)")
-            Text("Skill: \(presentable.skill)")
-            Text("Timezone: \(presentable.timezone)")
+            VStack(alignment: .leading) {
+                Text("Start: \(presentable.start)")
+                Text("End: \(presentable.end)")
+                Text("Specialty: \(presentable.specialty)")
+                Text("Skill: \(presentable.skill)")
+                Text("Timezone: \(presentable.timezone)")
+            }
         }
     }
 }

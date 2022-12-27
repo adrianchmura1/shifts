@@ -11,6 +11,14 @@ import SwiftUI
 final class ShiftsViewModel: ObservableObject {
     @Published var viewState: ViewState = .loading
 
+    @Published var presentableModal: ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable? = nil {
+        didSet {
+            self.isModalVisible = self.presentableModal != nil
+        }
+    }
+
+    var isModalVisible: Bool = false
+
     private let getShiftsUseCase: GetShiftsUseCase
 
     init(getShiftsUseCase: GetShiftsUseCase) {
@@ -36,6 +44,18 @@ final class ShiftsViewModel: ObservableObject {
             catch {
                 await handleError(error)
             }
+        }
+    }
+
+    func presentableTapped(_ presentable: ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable) {
+        DispatchQueue.main.async {
+            self.presentableModal = presentable
+        }
+    }
+
+    func modalDismissed() {
+        DispatchQueue.main.async {
+            self.presentableModal = nil
         }
     }
 
