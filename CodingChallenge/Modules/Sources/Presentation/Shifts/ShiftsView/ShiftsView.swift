@@ -125,6 +125,7 @@ extension ShiftsView.DaysList.Day {
                 Text("Specialty: \(presentable.specialty)")
                 Text("Skill: \(presentable.skill)")
                 Text("Timezone: \(presentable.timezone)")
+                Text("Distance: \(presentable.distance)")
             }
         }
     }

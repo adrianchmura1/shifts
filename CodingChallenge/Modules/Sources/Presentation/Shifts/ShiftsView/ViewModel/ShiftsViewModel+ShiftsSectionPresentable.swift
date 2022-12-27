@@ -28,7 +28,8 @@ extension ShiftsViewModel {
                                                 specialty: $0.localizedSpecialty.name,
                                                 kind: $0.kind,
                                                 timezone: $0.timezone,
-                                                skill: $0.skill.name))
+                                                skill: $0.skill.name,
+                                                distance: String($0.distance)))
             }
         }
     }
@@ -53,5 +54,6 @@ extension ShiftsViewModel.ShiftsSectionPresentable.ShiftPresentable {
         let kind: String
         let timezone: String
         let skill: String
+        let distance: String
     }
 }
